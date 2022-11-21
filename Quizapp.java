@@ -4,6 +4,7 @@
  */
 
 package com.mycompany.quizapp;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -184,10 +185,93 @@ setLayout(null);
            radioButtons[2].setText("Spring Rolls");
            radioButtons[3].setText("Pizza");
        }
+       label.setBounds(30,40,450,20);
+       for(int x = 0, y = 0; x <= 90; x += 30, y ++){
+           radioButtons[y].setBounds(50, 80 +x, 200, 20);
+       
    }
-    
+       
+       
+   }
+   boolean checkAnswer() {
+       if(current == 0){
+          return(radioButtons[0].isSelected()); 
+       }
+       if (current == 1){
+           return(radioButtons[0].isSelected());
+           
+       }
+       if (current == 2){
+           return(radioButtons[0].isSelected());
+       }
+       if (current == 3 ){
+           return(radioButtons[0].isSelected());
+       }
+       if (current == 4 ){
+           return(radioButtons[0].isSelected());
+       }
+       if (current == 5){
+           return(radioButtons[0].isSelected());
+       }
+       if (current == 6 ){
+           return(radioButtons[0].isSelected());
+       }
+       if (current == 7 ){
+           return(radioButtons[0].isSelected());
+       }
+       if (current == 8 ){
+           return(radioButtons[0].isSelected());
+       }
+       if (current == 9){
+           return(radioButtons[0].isSelected());
+       }
+       if (current == 10 ){
+           return(radioButtons[0].isSelected());
+       }
+       if (current == 11 ){
+           return(radioButtons[3].isSelected());
+       }
+       if (current == 12){
+           return(radioButtons[1].isSelected());
+       }
+       if (current == 13 ){
+           return(radioButtons[2].isSelected());
+       }
+       if (current == 14 ){
+           return(radioButtons[0].isSelected());
+       }
+       return false;
+   }
+   
+   
+   
 public static void main(String[] args) {
-       Quizapp("simple quiz app");
+       new Quizapp("simple quiz app") {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+           if (e.getSource()==btnNext){
+             if(checkAnswer())  {
+                 count = count +1;
+                 current ++;
+                 setData();
+                 
+             }
+             if (current == 14){
+                 btnNext.setEnabled(false);
+                 btnResult.setVisible(true);
+                 btnResult.setText("result");
+             }
+             } 
+           if (e.getActionCommmand().equals("result")){
+               
+           }
+           if (checkAnswer()){
+               
+           }
+           }
+           
+       }
+       };
        
     }
-}
+
