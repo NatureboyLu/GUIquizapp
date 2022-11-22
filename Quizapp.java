@@ -4,28 +4,30 @@
  */
 
 package com.mycompany.quizapp;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
  /*
  * @author luald
  */
-public abstract class Quizapp extends JFrame implements ActionListener {
+public class Quizapp extends JFrame implements ActionListener {
      
     JLabel label;
-    
     JRadioButton radioButtons[] = new JRadioButton[5];
     JButton btnNext, btnResult;
-    buttonGroup bg;
+    ButtonGroup bg;
     int count = 0;
     int current = 0;
     int x = 1;
     int y = 1;
     int now = 0;
-    int m[] = new int[10];
+    int m[] = new int[15];
   
     
     
@@ -35,13 +37,11 @@ public abstract class Quizapp extends JFrame implements ActionListener {
         add(label); 
         bg = new ButtonGroup();
     
-     for (int i = 0; i <5; i++){
-    
-    radioButtons[i] = new JRadioButton();
-    add(radioButtons[i]);
-    bg.add(radioButtons[i]);
-          
-}
+        for (int i = 0; i <5; i++){
+             radioButtons[i] = new JRadioButton();
+             add(radioButtons[i]);
+             bg.add(radioButtons[i]);
+        }
  btnNext = new JButton("Next");
  btnResult = new  JButton("Result");
  btnResult.setVisible(false);
@@ -58,16 +58,10 @@ public abstract class Quizapp extends JFrame implements ActionListener {
  btnNext.setBounds(100, 240, 100, 30);
  btnResult.setBounds(270, 240, 100, 30);
  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-setLayout(null);
+ setLayout(null);
  setLocation(250, 100);
  setVisible(true);
  setSize(600,350);
- 
- 
- 
- 
- 
- 
  
 }
     
@@ -195,83 +189,86 @@ setLayout(null);
    }
    boolean checkAnswer() {
        if(current == 0){
-          return(radioButtons[0].isSelected()); 
+          return(radioButtons[1].isSelected()); 
        }
        if (current == 1){
-           return(radioButtons[0].isSelected());
-           
-       }
-       if (current == 2){
-           return(radioButtons[0].isSelected());
-       }
-       if (current == 3 ){
-           return(radioButtons[0].isSelected());
-       }
-       if (current == 4 ){
-           return(radioButtons[0].isSelected());
-       }
-       if (current == 5){
-           return(radioButtons[0].isSelected());
-       }
-       if (current == 6 ){
-           return(radioButtons[0].isSelected());
-       }
-       if (current == 7 ){
-           return(radioButtons[0].isSelected());
-       }
-       if (current == 8 ){
-           return(radioButtons[0].isSelected());
-       }
-       if (current == 9){
-           return(radioButtons[0].isSelected());
-       }
-       if (current == 10 ){
-           return(radioButtons[0].isSelected());
-       }
-       if (current == 11 ){
-           return(radioButtons[3].isSelected());
-       }
-       if (current == 12){
-           return(radioButtons[1].isSelected());
-       }
-       if (current == 13 ){
            return(radioButtons[2].isSelected());
        }
+       if (current == 2){
+           return(radioButtons[3].isSelected());
+       }
+       if (current == 3 ){
+           return(radioButtons[4].isSelected());
+       }
+       if (current == 4 ){
+           return(radioButtons[5].isSelected());
+       }
+       if (current == 5){
+           return(radioButtons[6].isSelected());
+       }
+       if (current == 6 ){
+           return(radioButtons[7].isSelected());
+       }
+       if (current == 7 ){
+           return(radioButtons[8].isSelected());
+       }
+       if (current == 8 ){
+           return(radioButtons[9].isSelected());
+       }
+       if (current == 9){
+           return(radioButtons[10].isSelected());
+       }
+       if (current == 10 ){
+           return(radioButtons[11].isSelected());
+       }
+       if (current == 11 ){
+           return(radioButtons[12].isSelected());
+       }
+       if (current == 12){
+           return(radioButtons[13].isSelected());
+       }
+       if (current == 13 ){
+           return(radioButtons[14].isSelected());
+       }
        if (current == 14 ){
-           return(radioButtons[0].isSelected());
+           return(radioButtons[15].isSelected());
        }
        return false;
    }
    
    
    
-public static void main(String[] args) {
-       new Quizapp("simple quiz app") {
+        public static void main(String[] args) {
+            new Quizapp("simple quiz app"); 
+           }
+
            @Override
-           public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e) {
            if (e.getSource()==btnNext){
-             if(checkAnswer())  {
+             if(checkAnswer())  
                  count = count +1;
                  current ++;
                  setData();
-                 
-             }
              if (current == 14){
-                 btnNext.setEnabled(false);
-                 btnResult.setVisible(true);
-                 btnResult.setText("result");
+                     btnNext.setEnabled(false);
+                     btnResult.setVisible(true);
+                     btnResult.setText("result");
+                 }
              }
-             } 
-           if (e.getActionCommmand().equals("result")){
-               
+             
+           if (e.getActionCommand().equals("Result")){
+             if (checkAnswer())
+            count = count +1;
+            current ++;
+            JOptionPane.showMessageDialog(this, "Correct Answers are" + count);
+            System.exit(0);
+           }  
            }
-           if (checkAnswer()){
-               
-           }
+          
            }
            
-       }
-       };
        
-    }
+       
+       
+    
 
